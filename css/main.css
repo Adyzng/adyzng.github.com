@@ -1404,20 +1404,9 @@ pre .javascript .function {
 }
 .sidebar a {
   color: #999;
-  border-bottom-color: #555;
 }
 .sidebar a:hover {
   color: #eee;
-}
-@media (min-width: 768px) and (max-width: 991px) {
-  .sidebar {
-    display: none !important;
-  }
-}
-@media (max-width: 767px) {
-  .sidebar {
-    display: none !important;
-  }
 }
 .sidebar-inner {
   position: relative;
@@ -1548,7 +1537,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #fff558;
+  background: #fffffc;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2417,6 +2406,16 @@ hr {
     width: auto;
     text-align: center;
   }
+}
+.sidebar {
+  background: #999 url("/uploads/sidebar.jpg") no-repeat scroll;
+}
+.sidebar a {
+  color: #bbb;
+  border-bottom-color: #555;
+}
+.sidebar a:hover {
+  color: #fff;
 }
 .site-author-image {
   border-radius: 50%;
