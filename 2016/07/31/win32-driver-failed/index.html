@@ -69,7 +69,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Windows,Driver,Cache,C++," />
+  <meta name="keywords" content="WinDbg,Windows," />
 
 
 
@@ -85,28 +85,25 @@
 
 
 
-<meta name="description" content="背景简述需要这样一个Mount驱动，能在Windows系统中虚拟出一个卷，这个mount起来的卷数据源可以是内存、文件、Snapshot等。如果是文件等可以持久化的存储介质，还需要保留卷数据。
+<meta name="description" content="It was failed with error when installing driver failed.When check windows device setup logs C:\Windows\INF\setupapi.dev.log.
+You can see following errors
 
-文件：卷的读写都转移到文件当中，dismount之后数据保留
-内存：卷dismount之后数据不保存
-Snapshot: 只能mount成制度卷，Snapshot是不可写的">
+Failed to call server side to delete driver p">
 <meta property="og:type" content="article">
-<meta property="og:title" content="驱动缓存设计">
-<meta property="og:url" content="http://www.alzan.cc/2016/08/01/memory-cache/index.html">
+<meta property="og:title" content="Windows驱动安装失败，Error=0x0000000D">
+<meta property="og:url" content="http://www.alzan.cc/2016/07/31/win32-driver-failed/index.html">
 <meta property="og:site_name" content="苦行苦修">
-<meta property="og:description" content="背景简述需要这样一个Mount驱动，能在Windows系统中虚拟出一个卷，这个mount起来的卷数据源可以是内存、文件、Snapshot等。如果是文件等可以持久化的存储介质，还需要保留卷数据。
+<meta property="og:description" content="It was failed with error when installing driver failed.When check windows device setup logs C:\Windows\INF\setupapi.dev.log.
+You can see following errors
 
-文件：卷的读写都转移到文件当中，dismount之后数据保留
-内存：卷dismount之后数据不保存
-Snapshot: 只能mount成制度卷，Snapshot是不可写的">
-<meta property="og:updated_time" content="2016-08-01T09:20:35.000Z">
+Failed to call server side to delete driver p">
+<meta property="og:updated_time" content="2016-08-13T16:33:05.096Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="驱动缓存设计">
-<meta name="twitter:description" content="背景简述需要这样一个Mount驱动，能在Windows系统中虚拟出一个卷，这个mount起来的卷数据源可以是内存、文件、Snapshot等。如果是文件等可以持久化的存储介质，还需要保留卷数据。
+<meta name="twitter:title" content="Windows驱动安装失败，Error=0x0000000D">
+<meta name="twitter:description" content="It was failed with error when installing driver failed.When check windows device setup logs C:\Windows\INF\setupapi.dev.log.
+You can see following errors
 
-文件：卷的读写都转移到文件当中，dismount之后数据保留
-内存：卷dismount之后数据不保存
-Snapshot: 只能mount成制度卷，Snapshot是不可写的">
+Failed to call server side to delete driver p">
 
 
 
@@ -127,9 +124,9 @@ Snapshot: 只能mount成制度卷，Snapshot是不可写的">
 
 
 
-  <link rel="canonical" href="http://www.alzan.cc/2016/08/01/memory-cache/"/>
+  <link rel="canonical" href="http://www.alzan.cc/2016/07/31/win32-driver-failed/"/>
 
-  <title> 驱动缓存设计 | 苦行苦修 </title>
+  <title> Windows驱动安装失败，Error=0x0000000D | 苦行苦修 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -269,7 +266,7 @@ Snapshot: 只能mount成制度卷，Snapshot是不可写的">
             
             
               
-                驱动缓存设计
+                Windows驱动安装失败，Error=0x0000000D
               
             
           </h1>
@@ -281,8 +278,8 @@ Snapshot: 只能mount成制度卷，Snapshot是不可写的">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-01T17:20:35+08:00" content="2016-08-01">
-              2016-08-01
+            <time itemprop="dateCreated" datetime="2016-07-31T21:49:52+08:00" content="2016-07-31">
+              2016-07-31
             </time>
           </span>
 
@@ -302,30 +299,6 @@ Snapshot: 只能mount成制度卷，Snapshot是不可写的">
 
                 
                 
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Windows/Driver/" itemprop="url" rel="index">
-                    <span itemprop="name">Driver</span>
-                  </a>
-                </span>
-
-                
-                
-                  ， 
-                
-
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Windows/Driver/C-C/" itemprop="url" rel="index">
-                    <span itemprop="name">C/C++</span>
-                  </a>
-                </span>
-
-                
-                
 
               
             </span>
@@ -335,8 +308,8 @@ Snapshot: 只能mount成制度卷，Snapshot是不可写的">
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/01/memory-cache/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/01/memory-cache/" itemprop="commentsCount"></span>
+                <a href="/2016/07/31/win32-driver-failed/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/31/win32-driver-failed/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -364,57 +337,22 @@ Snapshot: 只能mount成制度卷，Snapshot是不可写的">
       
 
       
-        <h4 id="背景简述"><a href="#背景简述" class="headerlink" title="背景简述"></a>背景简述</h4><p>需要这样一个Mount驱动，能在Windows系统中虚拟出一个卷，这个mount起来的卷数据源可以是内存、文件、Snapshot等。如果是文件等可以持久化的存储介质，还需要保留卷数据。</p>
+        <p>It was failed with error when installing driver failed.<br>When check windows device setup logs <code>C:\Windows\INF\setupapi.dev.log</code>.</p>
+<p>You can see following errors</p>
 <ul>
-<li>文件：卷的读写都转移到文件当中，dismount之后数据保留</li>
-<li>内存：卷dismount之后数据不保存</li>
-<li>Snapshot: 只能mount成制度卷，Snapshot是不可写的</li>
+<li>Failed to call server side to delete driver package. Error = 0x0000000D</li>
+<li>Failed to delete package from Driver Store</li>
+<li>Failed to add the driver package: The data is invalid</li>
+<li>UpdateDriverForPlugAndPlayDevices: error 13</li>
 </ul>
 <a id="more"></a>
-<h5 id="1-驱动分层"><a href="#1-驱动分层" class="headerlink" title="1. 驱动分层"></a>1. 驱动分层</h5><p>应为要支持多种数据来源，所以对卷的读写都会转移到一个应用层的进程来处理，这样驱动就分成了两层：</p>
+<p>It was caused by windows service <code>DeviceInstall</code> was not started.<br>This service should be set to <code>Automatic Start</code>.<br>On client environment it was set to <code>Manually Start</code>, that cause our driver install failed.</p>
+<p>Resolution </p>
 <ul>
-<li>内核层模拟转发：模拟卷设备，处理系统IOCTL，转发读写请求到应用层</li>
-<li>应用层数据处理：响应内核的读写请求</li>
+<li>sc start <code>DeviceInstall</code></li>
+<li>set <code>Automatic Start</code> of <code>DeviceInstall</code></li>
 </ul>
-<h5 id="2-性能问题"><a href="#2-性能问题" class="headerlink" title="2. 性能问题"></a>2. 性能问题</h5><p>拿mount文件来说，对虚拟卷的所有读写都会转移到文件当中，对于NTFS文件系统来说特别是<a href="http://ntfs.com/ntfs-mft.htm" target="_blank" rel="external">MFT</a>和<a href="http://ntfs.com/ntfs-partition-boot-sector.htm" target="_blank" rel="external">BootSector</a>会频繁访问。如果有Cache的话，读写性能会有很大提高。</p>
-<h5 id="3-内存映射"><a href="#3-内存映射" class="headerlink" title="3. 内存映射"></a>3. 内存映射</h5><p>对卷读写意味着会有大量的内存数据交换在应用层和内核之间，为了减少大量内层数据交换，内核层分配一块Nonpaged Buffer，然后分别映射到内核态和应用层，使得内核驱动和应用层进程可以直接读写同一块内层，通过Event实现对Buffer的同步访问。API <a href="http://ntfs.com/ntfs-partition-boot-sector.htm" target="_blank" rel="external"><code>MmAllocatePagesForMdl</code></a>，<a href="https://msdn.microsoft.com/en-us/library/windows/hardware/ff554482(v=vs.85).aspx" target="_blank" rel="external"><code>MmMapLockedPagesSpecifyCache</code></a></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// Allocate an buffer to share with the application:</span></div><div class="line"><span class="comment">//   allocates zero-filled, non-paged, physical memory pages to an MDL</span></div><div class="line"><span class="comment">//   MmAllocatePagesForMdlEx() for 2003sp1 or later.   </span></div><div class="line"><span class="comment">//</span></div><div class="line">pMapMem-&gt;MemMdl = MmAllocatePagesForMdl(lowAddress, highAddress, lowAddress, totalBytes);</div><div class="line"><span class="keyword">if</span> (!pMapMem-&gt;MemMdl)</div><div class="line">&#123;</div><div class="line">	status = STATUS_INSUFFICIENT_RESOURCES;</div><div class="line">	<span class="keyword">break</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// The preferred way to map the buffer into user space</span></div><div class="line"><span class="comment">//</span></div><div class="line">pMapMem-&gt;UserVa = MmMapLockedPagesSpecifyCache(</div><div class="line">	pMapMem-&gt;MemMdl,	<span class="comment">// MDL</span></div><div class="line">	UserMode,			<span class="comment">// User Mode</span></div><div class="line">	MmCached,			<span class="comment">// Caching</span></div><div class="line">	<span class="literal">NULL</span>,				<span class="comment">// Address</span></div><div class="line">	FALSE,				<span class="comment">// BugCheck</span></div><div class="line">	NormalPagePriority); <span class="comment">// Priority</span></div><div class="line"><span class="comment">//</span></div><div class="line"><span class="comment">// map to kernel mode space</span></div><div class="line"><span class="comment">//</span></div><div class="line">pMapMem-&gt;SystemVa = MmMapLockedPagesSpecifyCache(</div><div class="line">	pMapMem-&gt;MemMdl,	<span class="comment">// MDL</span></div><div class="line">	KernelMode,			<span class="comment">// Kernel Mode</span></div><div class="line">	MmCached,			<span class="comment">// Caching</span></div><div class="line">	<span class="literal">NULL</span>,				<span class="comment">// Address</span></div><div class="line">	FALSE,				<span class="comment">// BugCheck</span></div><div class="line">	NormalPagePriority); <span class="comment">// Priority</span></div></pre></td></tr></table></figure>
-<p><br><br><em>下面两段借鉴之前写的设计文档，懒得翻译了</em></p>
-<h5 id="4-Memory-Structure"><a href="#4-Memory-Structure" class="headerlink" title="4. Memory Structure"></a>4. Memory Structure</h5><p>Map memory for both user and kernel mode, it can be access from both user and kernel mode.<br>Kernel mode fill the cache block, then notify user mode to complete the IO.<br>Cache memory consist of four parts:</p>
-<table>
-<thead>
-<tr>
-<th>Header</th>
-<th>FirstBlock</th>
-<th>ReadCache</th>
-<th>WriteCache  </th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>   4KB</td>
-<td>128KB</td>
-<td>2MB</td>
-<td>2MB    </td>
-</tr>
-</tbody>
-</table>
-<p>Read Cache Block  (RCB) : 128KB (default),    Registry Control : ReadCacheKB<br>Write Cache Block (WCB) : 2MB (default),    Registry Control : WriteCacheKB<br>Total Memory Size (TMS) : 4MB (default),    Registry Control : BufferSizeMB</p>
-<p>Header        : PAGE_SIZE, Used to store the cache items, each item represent one cached block.<br>FirstBlock  : 128KB by default, Cache for the first block (offset==0) of volume, always resided in the cache memory.<br>ReadCache    : 2MB by default, Split into small slices (128KB).<br>WriteCache    : 2MB by default. Cache continue write data up to 2MB.</p>
-<h5 id="5-Read-Write-Policy"><a href="#5-Read-Write-Policy" class="headerlink" title="5. Read/Write Policy"></a>5. Read/Write Policy</h5><h6 id="Cache-Policy-for-Read"><a href="#Cache-Policy-for-Read" class="headerlink" title="Cache Policy for Read:"></a>Cache Policy for Read:</h6><ol>
-<li>If read size &gt; WCB, using all the TMS to complete the IRP by split the IRP into 4MB each one, discard the other cached items except the FisrtBlock;<br> Else step 2;</li>
-<li>If read size &gt; RCB &amp;&amp; &lt;= WCB, using the WriteCache part to completed the IRP;<br> Else step 3;</li>
-<li>Read size &lt;= RCB, Search all the read / write blocks, if cache hit, complete the IRP;<br> Else step 4;</li>
-<li>Select an unused ST_MEM_ITEM or LRU one to complete the IRP.</li>
-</ol>
-<h6 id="Cache-Policy-for-Write"><a href="#Cache-Policy-for-Write" class="headerlink" title="Cache Policy for Write:"></a>Cache Policy for Write:</h6><ol>
-<li>If write size &gt; WCB, using all the TMS to complete the IRP by split the IRP into 4MB each one, discard the other cached items except the FisrtBlock;<br> Else step 2;</li>
-<li>If write size &lt;= RCB, using the WriteCache part and checking previous cached write;<ol>
-<li>If previous offset is overlapped with this one and empty size is large enough to hold this one, write data to the cache buffer, complete IRP;</li>
-<li>Else completed the previous cached write data, then cache this write operation, completed IRP.</li>
-</ol>
-</li>
-</ol>
+<p>MS: <a href="http://answers.microsoft.com/en-us/windows/forum/windows8_1-hardware/windows-81-fails-to-install-device-drivers-data-is/81322c85-c552-4224-b737-d23d54f5bd1f" target="_blank" rel="external">Windows 8.1 fails to install device drivers</a></p>
 
       
     </div>
@@ -437,13 +375,9 @@ Snapshot: 只能mount成制度卷，Snapshot是不可写的">
       
         <div class="post-tags">
           
+            <a href="/tags/WinDbg/" rel="tag">#WinDbg</a>
+          
             <a href="/tags/Windows/" rel="tag">#Windows</a>
-          
-            <a href="/tags/Driver/" rel="tag">#Driver</a>
-          
-            <a href="/tags/Cache/" rel="tag">#Cache</a>
-          
-            <a href="/tags/C/" rel="tag">#C++</a>
           
         </div>
       
@@ -452,16 +386,16 @@ Snapshot: 只能mount成制度卷，Snapshot是不可写的">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/01/winhttp-download/" rel="next" title="WinHTTP下载">
-                <i class="fa fa-chevron-left"></i> WinHTTP下载
+              <a href="/2016/07/31/usefull-link/" rel="next" title="Hexo相关资源">
+                <i class="fa fa-chevron-left"></i> Hexo相关资源
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/08/11/python-scraper/" rel="prev" title="Python爬虫--京东自动抢购">
-                Python爬虫--京东自动抢购 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/08/01/win-http/" rel="prev" title="WinHTTP下载">
+                WinHTTP下载 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -477,10 +411,10 @@ Snapshot: 只能mount成制度卷，Snapshot是不可写的">
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2016/08/01/memory-cache/"
-     data-title="驱动缓存设计"
+        <div class="ds-share flat" data-thread-key="2016/07/31/win32-driver-failed/"
+     data-title="Windows驱动安装失败，Error=0x0000000D"
      data-content=""
-     data-url="http://www.alzan.cc/2016/08/01/memory-cache/">
+     data-url="http://www.alzan.cc/2016/07/31/win32-driver-failed/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -507,8 +441,8 @@ Snapshot: 只能mount成制度卷，Snapshot是不可写的">
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/01/memory-cache/"
-           data-title="驱动缓存设计" data-url="http://www.alzan.cc/2016/08/01/memory-cache/">
+      <div class="ds-thread" data-thread-key="2016/07/31/win32-driver-failed/"
+           data-title="Windows驱动安装失败，Error=0x0000000D" data-url="http://www.alzan.cc/2016/07/31/win32-driver-failed/">
       </div>
     
   </div>
@@ -553,7 +487,7 @@ Snapshot: 只能mount成制度卷，Snapshot是不可写的">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -561,7 +495,7 @@ Snapshot: 只能mount成制度卷，Snapshot是不可写的">
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -570,7 +504,7 @@ Snapshot: 只能mount成制度卷，Snapshot是不可写的">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -659,7 +593,7 @@ Snapshot: 只能mount成制度卷，Snapshot是不可写的">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#背景简述"><span class="nav-text">背景简述</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-驱动分层"><span class="nav-text">1. 驱动分层</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-性能问题"><span class="nav-text">2. 性能问题</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-内存映射"><span class="nav-text">3. 内存映射</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-Memory-Structure"><span class="nav-text">4. Memory Structure</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-Read-Write-Policy"><span class="nav-text">5. Read/Write Policy</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Cache-Policy-for-Read"><span class="nav-text">Cache Policy for Read:</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Cache-Policy-for-Write"><span class="nav-text">Cache Policy for Write:</span></a></li></ol></li></ol></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>

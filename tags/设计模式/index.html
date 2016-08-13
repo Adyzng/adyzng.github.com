@@ -69,7 +69,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="WinDbg,Windows," />
+  <meta name="keywords" content="Hexo, Azlan, Blog" />
 
 
 
@@ -85,25 +85,15 @@
 
 
 
-<meta name="description" content="It was failed with error when installing driver failed.When check windows device setup logs C:\Windows\INF\setupapi.dev.log.
-You can see following errors
-
-Failed to call server side to delete driver p">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Windows驱动安装失败，Error=0x0000000D">
-<meta property="og:url" content="http://www.alzan.cc/2016/07/31/driver-failed/index.html">
+<meta name="description" content="说到底，人生只是一个人的挣扎，一个人的战斗">
+<meta property="og:type" content="website">
+<meta property="og:title" content="苦行苦修">
+<meta property="og:url" content="http://www.alzan.cc/tags/设计模式/index.html">
 <meta property="og:site_name" content="苦行苦修">
-<meta property="og:description" content="It was failed with error when installing driver failed.When check windows device setup logs C:\Windows\INF\setupapi.dev.log.
-You can see following errors
-
-Failed to call server side to delete driver p">
-<meta property="og:updated_time" content="2016-07-31T14:50:50.835Z">
+<meta property="og:description" content="说到底，人生只是一个人的挣扎，一个人的战斗">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Windows驱动安装失败，Error=0x0000000D">
-<meta name="twitter:description" content="It was failed with error when installing driver failed.When check windows device setup logs C:\Windows\INF\setupapi.dev.log.
-You can see following errors
-
-Failed to call server side to delete driver p">
+<meta name="twitter:title" content="苦行苦修">
+<meta name="twitter:description" content="说到底，人生只是一个人的挣扎，一个人的战斗">
 
 
 
@@ -124,9 +114,9 @@ Failed to call server side to delete driver p">
 
 
 
-  <link rel="canonical" href="http://www.alzan.cc/2016/07/31/driver-failed/"/>
+  <link rel="canonical" href="http://www.alzan.cc/tags/设计模式/"/>
 
-  <title> Windows驱动安装失败，Error=0x0000000D | 苦行苦修 </title>
+  <title> 标签: 设计模式 | 苦行苦修 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -147,7 +137,7 @@ Failed to call server side to delete driver p">
     
   
 
-  <div class="container one-collumn sidebar-position-left page-post-detail ">
+  <div class="container one-collumn sidebar-position-left  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -245,193 +235,74 @@ Failed to call server side to delete driver p">
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Windows驱动安装失败，Error=0x0000000D
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-31T21:49:52+08:00" content="2016-07-31">
-              2016-07-31
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/Windows/" itemprop="url" rel="index">
-                    <span itemprop="name">Windows</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/31/driver-failed/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/31/driver-failed/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-              &nbsp; | &nbsp;
-              <span class="page-pv">阅读量
-              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
-              </span>
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        <p>It was failed with error when installing driver failed.<br>When check windows device setup logs <code>C:\Windows\INF\setupapi.dev.log</code>.</p>
-<p>You can see following errors</p>
-<ul>
-<li>Failed to call server side to delete driver package. Error = 0x0000000D</li>
-<li>Failed to delete package from Driver Store</li>
-<li>Failed to add the driver package: The data is invalid</li>
-<li>UpdateDriverForPlugAndPlayDevices: error 13</li>
-</ul>
-<a id="more"></a>
-<p>It was caused by windows service <code>DeviceInstall</code> was not started.<br>This service should be set to <code>Automatic Start</code>.<br>On client environment it was set to <code>Manually Start</code>, that cause our driver install failed.</p>
-<p>Resolution </p>
-<ul>
-<li>sc start <code>DeviceInstall</code></li>
-<li>set <code>Automatic Start</code> of <code>DeviceInstall</code></li>
-</ul>
-<p>MS: <a href="http://answers.microsoft.com/en-us/windows/forum/windows8_1-hardware/windows-81-fails-to-install-device-drivers-data-is/81322c85-c552-4224-b737-d23d54f5bd1f" target="_blank" rel="external">Windows 8.1 fails to install device drivers</a></p>
-
-      
+  <div id="posts" class="posts-collapse">
+    <div class="collection-title">
+      <h2 >
+        设计模式
+        <small>标签</small>
+      </h2>
     </div>
 
-    <div>
+    
       
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-
-      
-    </div>
-
-    <div>
-      
+            <a class="post-title-link" href="/2016/08/13/python-factory/" itemprop="url">
+              
+                <span itemprop="name">Python设计模式-工厂模式</span>
+              
+            </a>
         
+      </h1>
 
-      
-    </div>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-08-13T23:26:06+08:00"
+              content="2016-08-13" >
+          08-13
+        </time>
+      </div>
 
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/WinDbg/" rel="tag">#WinDbg</a>
-          
-            <a href="/tags/Windows/" rel="tag">#Windows</a>
-          
-        </div>
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2016/07/31/usefull-links/" rel="next" title="Hexo相关资源">
-                <i class="fa fa-chevron-left"></i> Hexo相关资源
-              </a>
-            
-          </div>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/01/winhttp-download/" rel="prev" title="WinHTTP下载">
-                WinHTTP下载 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
-
-    <div class="post-spread">
+    
       
-        <div class="ds-share flat" data-thread-key="2016/07/31/driver-failed/"
-     data-title="Windows驱动安装失败，Error=0x0000000D"
-     data-content=""
-     data-url="http://www.alzan.cc/2016/07/31/driver-failed/">
-  <div class="ds-share-inline">
-    <ul  class="ds-share-icons-16">
 
-      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
-      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
-      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
-      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
-      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
 
-    </ul>
-    <div class="ds-share-icons-more">
-    </div>
+      <h1 class="post-title">
+        
+            <a class="post-title-link" href="/2016/08/13/python-singleton/" itemprop="url">
+              
+                <span itemprop="name">Python设计模式-单例模式</span>
+              
+            </a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2016-08-13T22:34:09+08:00"
+              content="2016-08-13" >
+          08-13
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
+    
   </div>
-</div>
-      
-    </div>
-  </div>
+
+  
 
 
           </div>
@@ -439,14 +310,6 @@ Failed to call server side to delete driver p">
 
 
           
-  <div class="comments" id="comments">
-    
-      <div class="ds-thread" data-thread-key="2016/07/31/driver-failed/"
-           data-title="Windows驱动安装失败，Error=0x0000000D" data-url="http://www.alzan.cc/2016/07/31/driver-failed/">
-      </div>
-    
-  </div>
-
 
         </div>
         
@@ -466,17 +329,8 @@ Failed to call server side to delete driver p">
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel ">
+      <section class="site-overview sidebar-panel  sidebar-panel-active ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/ferryman.jpg"
@@ -487,7 +341,7 @@ Failed to call server side to delete driver p">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -495,7 +349,7 @@ Failed to call server side to delete driver p">
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -504,7 +358,7 @@ Failed to call server side to delete driver p">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -586,17 +440,6 @@ Failed to call server side to delete driver p">
 
       </section>
 
-      
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-            
-              
-            
-            
-              <p class="post-toc-empty">此文章未包含目录</p>
-            
-          </div>
-        </section>
       
 
     </div>
@@ -705,10 +548,6 @@ Failed to call server side to delete driver p">
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
-
-
 
   
 
