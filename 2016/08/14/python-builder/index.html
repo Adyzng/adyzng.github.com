@@ -69,7 +69,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, Azlan, Blog" />
+  <meta name="keywords" content="设计模式,Python,建造者模式," />
 
 
 
@@ -85,15 +85,16 @@
 
 
 
-<meta name="description" content="说到底，人生只是一个人的挣扎，一个人的战斗">
-<meta property="og:type" content="website">
-<meta property="og:title" content="苦行苦修">
-<meta property="og:url" content="http://www.alzan.cc/archives/2016/index.html">
+<meta name="description" content="定义建造者模式定义：将一个复杂对象的构建与其表示分开，使得同样的构建过程可以有不同的表示形式。建造者模式属于创建性模式，它将产品的内部表象跟产品的构建过程分开，使得相同的构建过程可以创建不同的内部表象产品。建造模式使得产品内部表象可以独立的变化，客户不必知道产品内部组成的细节。建造模式可以强制实行一种分步骤进行的建造过程。建造模式就是解决这类问题的一种思想方法——将一个复杂对象的构建与它的表示分离">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python设计模式-建造者模式">
+<meta property="og:url" content="http://www.alzan.cc/2016/08/14/python-builder/index.html">
 <meta property="og:site_name" content="苦行苦修">
-<meta property="og:description" content="说到底，人生只是一个人的挣扎，一个人的战斗">
+<meta property="og:description" content="定义建造者模式定义：将一个复杂对象的构建与其表示分开，使得同样的构建过程可以有不同的表示形式。建造者模式属于创建性模式，它将产品的内部表象跟产品的构建过程分开，使得相同的构建过程可以创建不同的内部表象产品。建造模式使得产品内部表象可以独立的变化，客户不必知道产品内部组成的细节。建造模式可以强制实行一种分步骤进行的建造过程。建造模式就是解决这类问题的一种思想方法——将一个复杂对象的构建与它的表示分离">
+<meta property="og:updated_time" content="2016-08-14T08:02:42.954Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="苦行苦修">
-<meta name="twitter:description" content="说到底，人生只是一个人的挣扎，一个人的战斗">
+<meta name="twitter:title" content="Python设计模式-建造者模式">
+<meta name="twitter:description" content="定义建造者模式定义：将一个复杂对象的构建与其表示分开，使得同样的构建过程可以有不同的表示形式。建造者模式属于创建性模式，它将产品的内部表象跟产品的构建过程分开，使得相同的构建过程可以创建不同的内部表象产品。建造模式使得产品内部表象可以独立的变化，客户不必知道产品内部组成的细节。建造模式可以强制实行一种分步骤进行的建造过程。建造模式就是解决这类问题的一种思想方法——将一个复杂对象的构建与它的表示分离">
 
 
 
@@ -114,9 +115,9 @@
 
 
 
-  <link rel="canonical" href="http://www.alzan.cc/archives/2016/"/>
+  <link rel="canonical" href="http://www.alzan.cc/2016/08/14/python-builder/"/>
 
-  <title> 归档 | 苦行苦修 </title>
+  <title> Python设计模式-建造者模式 | 苦行苦修 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
@@ -137,7 +138,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  page-archive  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -235,325 +236,201 @@
           <div id="content" class="content">
             
 
-  <section id="posts" class="posts-collapse">
-    <span class="archive-move-on"></span>
-
-    <span class="archive-page-counter">
-      
-      
-      
-        
-      
-      嗯..! 目前共计 8 篇日志。 继续努力。
-    </span>
-
+  <div id="posts" class="posts-expand">
     
-
-      
-      
-      
-
-      
-        
-        <div class="collection-title">
-          <h2 class="archive-year motion-element" id="archive-year-2016">2016</h2>
-        </div>
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/14/python-builder/" itemprop="url">
-              
-                <span itemprop="name">Python设计模式-建造者模式</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-14T15:47:45+08:00"
-              content="2016-08-14" >
-          08-14
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/13/python-factory/" itemprop="url">
-              
-                <span itemprop="name">Python设计模式-工厂模式</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-13T23:26:06+08:00"
-              content="2016-08-13" >
-          08-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/13/python-singleton/" itemprop="url">
-              
-                <span itemprop="name">Python设计模式-单例模式</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-13T22:34:09+08:00"
-              content="2016-08-13" >
-          08-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/11/python-scraper-jd/" itemprop="url">
-              
-                <span itemprop="name">Python爬虫--京东自动抢购</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-11T23:20:35+08:00"
-              content="2016-08-11" >
-          08-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/01/win32-mount-driver/" itemprop="url">
-              
-                <span itemprop="name">Windows虚拟卷驱动</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-01T17:20:35+08:00"
-              content="2016-08-01" >
-          08-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/08/01/win-http/" itemprop="url">
-              
-                <span itemprop="name">WinHTTP下载</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-08-01T15:13:52+08:00"
-              content="2016-08-01" >
-          08-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/31/win32-driver-failed/" itemprop="url">
-              
-                <span itemprop="name">Windows驱动安装失败，Error=0x0000000D</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-31T21:49:52+08:00"
-              content="2016-07-31" >
-          07-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-      
-      
-      
-
-      
-      
-
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2016/07/31/usefull-link/" itemprop="url">
-              
-                <span itemprop="name">Hexo相关资源</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-07-31T19:49:52+08:00"
-              content="2016-07-31" >
-          07-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-    
-
-  </section>
 
   
+  
 
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Python设计模式-建造者模式
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-14T15:47:45+08:00" content="2016-08-14">
+              2016-08-14
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/" itemprop="url" rel="index">
+                    <span itemprop="name">Python</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/Python/设计模式/" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/14/python-builder/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/14/python-builder/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">阅读量
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h4><p>建造者模式定义：将一个复杂对象的构建与其表示分开，使得同样的构建过程可以有不同的表示形式。<br>建造者模式属于创建性模式，它将产品的内部表象跟产品的构建过程分开，使得相同的构建过程可以创建不同的内部表象产品。建造模式使得产品内部表象可以独立的变化，客户不必知道产品内部组成的细节。建造模式可以强制实行一种分步骤进行的建造过程。建造模式就是解决这类问题的一种思想方法——将一个复杂对象的构建与它的表示分离．使得同样的构建过程可以创建不同的表示。</p>
+<a id="more"></a>
+<h4 id="角色构成"><a href="#角色构成" class="headerlink" title="角色构成"></a>角色构成</h4><p>Builder角色包括抽象建造者角色(Builder)、具体建造者角色(Concrete Builder)、导演者角色(Director)和产品角色(Product)。</p>
+<ul>
+<li><p>抽象建造者角色(Builder)<br>给出一个抽象接口，以规范产品对象的各个组成成分的建造。模式中直接创建产品对象的是具体建造者角色(Concrete Builder)。具体建造者类必须实现这个接口所要求的两种方法：一种是建造方法；另一种是结果返还方法。一般来说，产品所包含的部件数目与建造方法的数目相符。换言之，有多少部件，就有多少相应的建造方法。</p>
+</li>
+<li><p>具体建造者角色(Concrete Builder)<br>担任这个角色的是与应用程序紧密相关的一些类，它们在应用程序调用下创建产品的实例。这个角色要完成的任务包括：实现抽象建造者Builder所声明的接口，给出一步一步地完成创建产品实例的操作。在建造过程完成后，提供产品的实例。</p>
+</li>
+<li><p>导演者角色(Director)<br>担任这个角色的类调用具体建造者角色以创建产品对象。导演者角色并没有产品类的具体知识，真正拥有产品类的具体知识的是具体建造者角色。</p>
+</li>
+<li><p>产品角色(Product)<br>产品（Product）便是建造中的复杂对象。一般来说，一个系统中会有多于一个的产品类，而且这些产品类并不一定有共同的接口，而完全可以是不相关联的。</p>
+</li>
+</ul>
+<h4 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h4><p>GitHub: <a href="https://github.com/adyzng/dp-python" target="_blank" rel="external">dp-python</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/设计模式/" rel="tag">#设计模式</a>
+          
+            <a href="/tags/Python/" rel="tag">#Python</a>
+          
+            <a href="/tags/建造者模式/" rel="tag">#建造者模式</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/13/python-factory/" rel="next" title="Python设计模式-工厂模式">
+                <i class="fa fa-chevron-left"></i> Python设计模式-工厂模式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/08/14/python-builder/"
+     data-title="Python设计模式-建造者模式"
+     data-content=""
+     data-url="http://www.alzan.cc/2016/08/14/python-builder/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
 
           </div>
@@ -561,6 +438,14 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/14/python-builder/"
+           data-title="Python设计模式-建造者模式" data-url="http://www.alzan.cc/2016/08/14/python-builder/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -580,8 +465,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/uploads/ferryman.jpg"
@@ -692,6 +586,17 @@
       </section>
 
       
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义"><span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#角色构成"><span class="nav-text">角色构成</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#实现"><span class="nav-text">实现</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
 
     </div>
   </aside>
@@ -799,11 +704,9 @@
   
 
   
-  
-    <script type="text/javascript" id="motion.page.archive">
-      $('.archive-year').velocity('transition.slideLeftIn');
-    </script>
-  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
 
 
   
