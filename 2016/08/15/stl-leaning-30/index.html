@@ -1,0 +1,954 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="google-site-verification" content="Cf1V8h6_-3EAahpVZtLoKiAfKOghMxwkzzStpVMZwSc" />
+<meta name="baidu-site-verification" content="t7c9vG5j1s" />
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.useso.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="C++,STL," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="这是本小人书。原名是《using stl》，不知道是谁写的。不过我倒觉得很有趣。如果你没法在三十分钟内觉得有所收获，那么赶紧扔了它。
+
+STL概述STL的一个重要特点是数据结构和算法的分离。尽管这是个简单的概念，但这种分离确实使得STL变得非常通用。例如，由于STL的sort()函数是完全通用的，你可以用它来操作几乎任何数据集合，包括链表，容器和数组。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="STL-30分钟掌握">
+<meta property="og:url" content="http://www.alzan.cc/2016/08/15/stl-leaning-30/index.html">
+<meta property="og:site_name" content="苦行苦修">
+<meta property="og:description" content="这是本小人书。原名是《using stl》，不知道是谁写的。不过我倒觉得很有趣。如果你没法在三十分钟内觉得有所收获，那么赶紧扔了它。
+
+STL概述STL的一个重要特点是数据结构和算法的分离。尽管这是个简单的概念，但这种分离确实使得STL变得非常通用。例如，由于STL的sort()函数是完全通用的，你可以用它来操作几乎任何数据集合，包括链表，容器和数组。">
+<meta property="og:updated_time" content="2016-08-15T14:16:54.293Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="STL-30分钟掌握">
+<meta name="twitter:description" content="这是本小人书。原名是《using stl》，不知道是谁写的。不过我倒觉得很有趣。如果你没法在三十分钟内觉得有所收获，那么赶紧扔了它。
+
+STL概述STL的一个重要特点是数据结构和算法的分离。尽管这是个简单的概念，但这种分离确实使得STL变得非常通用。例如，由于STL的sort()函数是完全通用的，你可以用它来操作几乎任何数据集合，包括链表，容器和数组。">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"hide"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://www.alzan.cc/2016/08/15/stl-leaning-30/"/>
+
+  <title> STL-30分钟掌握 | 苦行苦修 </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">苦行苦修</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">码农，程序猿，苦行者</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                STL-30分钟掌握
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-15T21:49:52+08:00" content="2016-08-15">
+              2016-08-15
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/C/" itemprop="url" rel="index">
+                    <span itemprop="name">C++</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/15/stl-leaning-30/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/15/stl-leaning-30/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+              &nbsp; | &nbsp;
+              <span class="page-pv">阅读量
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+              </span>
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>这是本小人书。原名是《using stl》，不知道是谁写的。不过我倒觉得很有趣。如果你没法在三十分钟内觉得有所收获，那么赶紧扔了它。</p>
+</blockquote>
+<h3 id="STL概述"><a href="#STL概述" class="headerlink" title="STL概述"></a>STL概述</h3><p>STL的一个重要特点是数据结构和算法的分离。尽管这是个简单的概念，但这种分离确实使得STL变得非常通用。例如，由于STL的sort()函数是完全通用的，你可以用它来操作几乎任何数据集合，包括链表，容器和数组。</p>
+<a id="more"></a>
+<h4 id="要点"><a href="#要点" class="headerlink" title="要点"></a>要点</h4><p>STL算法作为模板函数提供。为了和其他组件相区别，在本书中STL算法以后接一对圆括弧的方式表示，例如sort()。<br>STL另一个重要特性是它不是面向对象的。为了具有足够通用性，STL主要依赖于模板而不是封装，继承和虚函数（多态性）——OOP的三个要素。你在STL中找不到任何明显的类继承关系。这好像是一种倒退，但这正好是使得STL的组件具有广泛通用性的底层特征。另外，由于STL是基于模板，内联函数的使用使得生成的代码短小高效。</p>
+<p><em>提示</em></p>
+<p>确保在编译使用了STL的程序中至少要使用-O优化来保证内联扩展。STL提供了大量的模板类和函数，可以在OOP和常规编程中使用。所有的STL的大约50个算法都是完全通用的，而且不依赖于任何特定的数据类型。下面的小节说明了三个基本的STL组件:</p>
+<ol>
+<li>迭代器提供了访问容器中对象的方法。例如，可以使用一对迭代器指定list或vector中的一定范围的对象。迭代器就如同一个指针。事实上，C++的指针也是一种迭代器。但是，迭代器也可以是那些定义了<code>operator*()</code>以及其他类似于指针的操作符地方法的类对象。</li>
+<li>容器是一种数据结构，如<code>list</code>，<code>vector</code>，和<code>deques</code>，以模板类的方法提供。为了访问容器中的数据，可以使用由容器类输出的迭代器。</li>
+<li>算法是用来操作容器中的数据的模板函数。例如，STL用sort()来对一个vector中的数据进行排序，用<code>find()</code>来搜索一个list中的对象。函数本身与他们操作的数据的结构和类型无关，因此他们可以在从简单数组到高度复杂容器的任何数据结构上使用。</li>
+</ol>
+<h4 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h4><p>为了避免和其他头文件冲突， STL的头文件不再使用常规的.h扩展。为了包含标准的string类，迭代器和算法，用下面的指示符：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iterator&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div></pre></td></tr></table></figure></p>
+<p>如果你查看STL的头文件，你可以看到象iterator.h和stl_iterator.h这样的头文件。由于这些名字在各种STL实现之间都可能不同，你应该避免使用这些名字来引用这些头文件。为了确保可移植性，使用相应的没有.h后缀的文件名。表1列出了最常使用的各种容器类的头文件。该表并不完整，对于其他头文件，我将在本章和后面的两章中介绍。</p>
+<p>表 1. STL头文件和容器类</p>
+<table>
+<thead>
+<tr>
+<th>#include</th>
+<th>Container Class</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;deque&gt;</code></td>
+<td>deque</td>
+</tr>
+<tr>
+<td><code>&lt;list&gt;</code></td>
+<td>list</td>
+</tr>
+<tr>
+<td><code>&lt;map&gt;</code></td>
+<td>map, multimap</td>
+</tr>
+<tr>
+<td><code>&lt;queue&gt;</code></td>
+<td>queue, priority_queue</td>
+</tr>
+<tr>
+<td><code>&lt;set&gt;</code></td>
+<td>set, multiset</td>
+</tr>
+<tr>
+<td><code>&lt;stack&gt;</code></td>
+<td>stack</td>
+</tr>
+<tr>
+<td><code>&lt;vector&gt;</code></td>
+<td>vector</td>
+</tr>
+</tbody>
+</table>
+<h4 id="名字空间"><a href="#名字空间" class="headerlink" title="名字空间"></a>名字空间</h4><p>你的编译器可能不能识别名字空间。名字空间就好像一个信封，将标志符封装在另一个名字中。标志符只在名字空间中存在，因而避免了和其他标志符冲突。例如，可能有其他库和程序模块定义了<code>sort()</code>函数，为了避免和STL地<code>sort()</code>算法冲突，STL的<code>sort()</code>以及其他标志符都封装在名字空间std中。STL的<code>sort()</code>算法编译为<code>std::sort()</code>，从而避免了名字冲突。<br>尽管你的编译器可能没有实现名字空间，你仍然可以使用他们。为了使用STL，可以将下面的指示符插入到你的源代码文件中，典型地是在所有的<code>#include</code>指示符的后面：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div></pre></td></tr></table></figure>
+<h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>迭代器提供对一个容器中的对象的访问方法，并且定义了容器中对象的范围。迭代器就如同一个指针。事实上，C++的指针也是一种迭代器。但是，迭代器不仅仅是指针，因此你不能认为他们一定具有地址值。例如，一个数组索引，也可以认为是一种迭代器。</p>
+<p>迭代器有各种不同的创建方法。程序可能把迭代器作为一个变量创建。一个STL容器类可能为了使用一个特定类型的数据而创建一个迭代器。作为指针，必须能够使用*操作符类获取数据。你还可以使用其他数学操作符如++。典型的，++操作符用来递增迭代器，以访问容器中的下一个对象。如果迭代器到达了容器中的最后一个元素的后面，则迭代器变成<code>past-the-end</code>值。使用一个<code>past-the-end</code>值得指针来访问对象是非法的，就好像使用NULL或为初始化的指针一样。</p>
+<p><em>提示</em></p>
+<p>STL不保证可以从另一个迭代器来抵达一个迭代器。例如，当对一个集合中的对象排序时，如果你在不同的结构中指定了两个迭代器，第二个迭代器无法从第一个迭代器抵达，此时程序注定要失败。这是STL灵活性的一个代价。STL不保证检测毫无道理的错误。</p>
+<h4 id="迭代器的类型"><a href="#迭代器的类型" class="headerlink" title="迭代器的类型"></a>迭代器的类型</h4><p>对于STL数据结构和算法，你可以使用五种迭代器。下面简要说明了这五种类型：</p>
+<ul>
+<li>Input iterators 提供对数据的只读访问。</li>
+<li>Output iterators 提供对数据的只写访问</li>
+<li>Forward iterators 提供读写操作，并能向前推进迭代器。</li>
+<li>Bidirectional iterators提供读写操作，并能向前和向后操作。</li>
+<li>Random access iterators提供读写操作，并能在数据中随机移动。</li>
+</ul>
+<p>尽管各种不同的STL实现细节方面有所不同，还是可以将上面的迭代器想象为一种类继承关系。从这个意义上说，下面的迭代器继承自上面的迭代器。由于这种继承关系，你可以将一个Forward迭代器作为一个<code>output</code>或<code>input</code>迭代器使用。同样，如果一个算法要求是一个<code>bidirectional</code>迭代器，那么只能使用该种类型和随机访问迭代器。</p>
+<h4 id="指针迭代器"><a href="#指针迭代器" class="headerlink" title="指针迭代器"></a>指针迭代器</h4><p>正如下面的小程序显示的，一个指针也是一种迭代器。该程序同样显示了STL的一个主要特性——它不只是能够用于它自己的类类型，而且也能用于任何C或C++类型。iterdemo.cpp, 显示了如何把指针作为迭代器用于STL的<code>find()</code>算法来搜索普通的数组。</p>
+<blockquote>
+<ol>
+<li>iterdemo.cpp</li>
+</ol>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"> </div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> SIZE 100</span></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">4<span class="keyword">int</span> iarray[SIZE] = &#123;<span class="number">0</span>&#125;;</div><div class="line">4iarray[<span class="number">20</span>] = <span class="number">50</span>;</div><div class="line"></div><div class="line">4<span class="keyword">int</span>* ip = find(iarray, iarray + SIZE, <span class="number">50</span>);</div><div class="line">4<span class="keyword">if</span> (ip == iarray + SIZE)</div><div class="line">    	<span class="built_in">cout</span> &lt;&lt; <span class="string">"50 not found in array"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">  	<span class="keyword">else</span></div><div class="line">    	<span class="built_in">cout</span> &lt;&lt; *ip &lt;&lt; <span class="string">" found in array"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">  	<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在引用了I/O流库和STL算法头文件（注意没有.h后缀），该程序告诉编译器使用std名字空间。使用std名字空间的这行是可选的，因为可以删除该行对于这么一个小程序来说不会导致名字冲突。<br>程序中定义了尺寸为SIZE的全局数组。由于是全局变量，所以运行时数组自动初始化为零。下面的语句将在索引20位置处地元素设置为50,并使用<code>find()</code>算法来搜索值50:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">iarray[<span class="number">20</span>] = <span class="number">50</span>;</div><div class="line"><span class="keyword">int</span>* ip = find(iarray, iarray + SIZE, <span class="number">50</span>);</div></pre></td></tr></table></figure>
+<p>find()函数接受三个参数。头两个定义了搜索的范围。由于C和C++数组等同于指针，表达式<code>iarray</code>指向数组的第一个元素。而第二个参数<code>iarray + SIZE</code>等同于<code>past-the-end</code> 值，也就是数组中最后一个元素的后面位置。第三个参数是待定位的值，也就是50。<code>find()</code>函数返回和前两个参数相同类型的迭代器，这儿是一个指向整数的指针ip。</p>
+<p>~提示~</p>
+<p>必须记住STL使用模板。因此，STL函数自动根据它们使用的数据类型来构造。<br>为了判断<code>find()</code>是否成功，例子中测试<code>ip 和 past-the-end</code>值是否相等：</p>
+<p><code>if (ip == iarray + SIZE)</code><br>如果表达式为真，则表示在搜索的范围内没有指定的值。否则就是指向一个合法对象的指针，这时可以用下面的语句显示：:</p>
+<p><code>cout &lt;&lt; *ip &lt;&lt; &quot; found in array&quot; &lt;&lt; endl;</code><br>测试函数返回值和NULL是否相等是不正确的。不要象下面这样使用：</p>
+<p><code>int* ip = find(iarray, iarray + SIZE, 50);</code><br><code>if (ip != NULL) ...  // ??? incorrect</code><br>当使用STL函数时，只能测试ip是否和past-the-end 值是否相等。尽管在本例中ip是一个C++指针,其用法也必须符合STL迭代器的规则。</p>
+<h4 id="容器迭代器"><a href="#容器迭代器" class="headerlink" title="容器迭代器"></a>容器迭代器</h4><p>尽管C++指针也是迭代器，但用的更多的是容器迭代器。容器迭代器用法和iterdemo.cpp一样，但和将迭代器申明为指针变量不同的是，你可以使用容器类方法来获取迭代器对象。两个典型的容器类方法是<code>begin()</code>和<code>end()</code>。它们在大多数容器中表示整个容器范围。其他一些容器还使用<code>rbegin()</code>和<code>rend()</code>方法提供反向迭代器，以按反向顺序指定对象范围。</p>
+<p>下面的程序创建了一个矢量容器（STL的和数组等价的对象），并使用迭代器在其中搜索。该程序和前一章中的程序相同。</p>
+<blockquote>
+<ol>
+<li>vectdemo.cpp</li>
+</ol>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">4<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; intVector(<span class="number">100</span>);</div><div class="line">4intVector[<span class="number">20</span>] = <span class="number">50</span>;</div><div class="line"></div><div class="line">4<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator intIter = find(intVector.begin(), intVector.end(), <span class="number">50</span>);</div><div class="line">4<span class="keyword">if</span> (intIter != intVector.end())</div><div class="line">44<span class="built_in">cout</span> &lt;&lt; <span class="string">"Vector contains value "</span> &lt;&lt; *intIter &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">4<span class="keyword">else</span></div><div class="line">44<span class="built_in">cout</span> &lt;&lt; <span class="string">"Vector does not contain 50"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意用下面的方法显示搜索到的数据：<br><code>cout &lt;&lt; &quot;Vector contains value &quot; &lt;&lt; *intIter &lt;&lt; endl;</code></p>
+<h4 id="常量迭代器"><a href="#常量迭代器" class="headerlink" title="常量迭代器"></a>常量迭代器</h4><p>和指针一样，你可以给一个迭代器赋值。例如，首先申明一个迭代器：<br><code>vector&lt;int&gt;::iterator first;</code><br>该语句创建了一个<code>vector&lt;int&gt;</code>类的迭代器。下面的语句将该迭代器设置到<code>intVector</code>的第一个对象，并将它指向的对象值设置为123 :<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">first = intVector.begin();</div><div class="line">`*first = <span class="number">123</span>;</div></pre></td></tr></table></figure></p>
+<p>这种赋值对于大多数容器类都是允许的，除了只读变量。为了防止错误赋值，可以申明迭代器为：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::const_iterator result;</div><div class="line">result = find(intVector.begin(), intVector.end(), value);</div><div class="line"><span class="keyword">if</span> (result != intVector.end())</div><div class="line">4*result = <span class="number">123</span>;  <span class="comment">// failed</span></div></pre></td></tr></table></figure></p>
+<p><em>警告</em><br>另一种防止数据被改变得方法是将容器申明为const类型。</p>
+<h3 id="使用迭代器编程"><a href="#使用迭代器编程" class="headerlink" title="使用迭代器编程"></a>使用迭代器编程</h3><p>你已经见到了迭代器的一些例子，现在我们将关注每种特定的迭代器如何使用。由于使用迭代器需要关于STL容器类和算法的知识，在阅读了后面的两章后你可能需要重新复习一下本章内容。</p>
+<h4 id="输入迭代器"><a href="#输入迭代器" class="headerlink" title="输入迭代器"></a>输入迭代器</h4><p>输入迭代器是最普通的类型。输入迭代器至少能够使用==和!=测试是否相等；使用*来访问数据；使用++操作来递推迭代器到下一个元素或到达<code>past-the-end</code>值。<br>为了理解迭代器和STL函数是如何使用它们的，现在来看一下<code>find()</code>模板函数的定义：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> InputIterator, <span class="keyword">class</span> T&gt;</div><div class="line"><span class="function">InputIterator <span class="title">find</span><span class="params">(</span></span></div><div class="line">4InputIterator first, </div><div class="line">4InputIterator last, </div><div class="line">4<span class="keyword">const</span> T&amp; value) </div><div class="line">&#123;</div><div class="line">4<span class="keyword">while</span> (first != last &amp;&amp; *first != value) ++first;</div><div class="line">    	<span class="keyword">return</span> first;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><em>注意</em><br>在find()算法中，注意如果<code>first</code>和<code>last</code>指向不同的容器，该算法可能陷入死循环。</p>
+<h4 id="输出迭代器"><a href="#输出迭代器" class="headerlink" title="输出迭代器"></a>输出迭代器</h4><p>输出迭代器缺省只写，通常用于将数据从一个位置拷贝到另一个位置。由于输出迭代器无法读取对象，因此你不会在任何搜索和其他算法中使用它。要想读取一个拷贝的值，必须使用另一个输入迭代器（或它的继承迭代器）。</p>
+<blockquote>
+<ol>
+<li>outiter.cpp</li>
+</ol>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span>   <span class="comment">// Need copy()</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span>      <span class="comment">// Need vector</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">4<span class="keyword">double</span> darray[<span class="number">10</span>] = &#123;<span class="number">1.0</span>, <span class="number">1.1</span>, <span class="number">1.2</span>, <span class="number">1.3</span>, <span class="number">1.4</span>, <span class="number">1.5</span>, <span class="number">1.6</span>, <span class="number">1.7</span>, <span class="number">1.8</span>, <span class="number">1.9</span>&#125;;</div><div class="line">4<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; vdouble(<span class="number">10</span>);</div><div class="line"></div><div class="line">4<span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt;::iterator outputIterator = vdouble.begin();</div><div class="line">4copy(darray, darray + <span class="number">10</span>, outputIterator);</div><div class="line"></div><div class="line">4<span class="keyword">while</span> (outputIterator != vdouble.end()) </div><div class="line">4&#123;</div><div class="line">44<span class="built_in">cout</span> &lt;&lt; *outputIterator &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">44outputIterator++;</div><div class="line">  	&#125;</div><div class="line"></div><div class="line">4<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><em>注意</em><br>当使用<code>copy()</code>算法的时候，你必须确保目标容器有足够大的空间，或者容器本身是自动扩展的。</p>
+<h4 id="前推迭代器"><a href="#前推迭代器" class="headerlink" title="前推迭代器"></a>前推迭代器</h4><p>前推迭代器能够读写数据值，并能够向前推进到下一个值。但是没法递减。<code>replace()</code>算法显示了前推迭代器的使用方法。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> ForwardIterator, <span class="keyword">class</span> T&gt;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">replace</span> <span class="params">(ForwardIterator first,</span></span></div><div class="line">              ForwardIterator last,</div><div class="line">              <span class="keyword">const</span> T&amp; old_value,</div><div class="line">              <span class="keyword">const</span> T&amp; new_value);</div></pre></td></tr></table></figure>
+<p>使用<code>replace()</code>将<code>[first,last]</code>范围内的所有值为<code>old_value</code>的对象替换为<code>new_value</code>:<br><code>replace(vdouble.begin(), vdouble.end(), 1.5, 3.14159);</code></p>
+<h4 id="双向迭代器"><a href="#双向迭代器" class="headerlink" title="双向迭代器"></a>双向迭代器</h4><p>双向迭代器要求能够增减。如reverse()算法要求两个双向迭代器作为参数:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> BidirectionalIterator&gt;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">reverse</span><span class="params">(BidirectionalIterator first,</span></span></div><div class="line">444 BidirectionalIterator last);</div></pre></td></tr></table></figure></p>
+<p>使用<code>reverse()</code>函数来对容器进行逆向排序:<br><code>reverse(vdouble.begin(), vdouble.end());</code></p>
+<h4 id="随机访问迭代器"><a href="#随机访问迭代器" class="headerlink" title="随机访问迭代器"></a>随机访问迭代器</h4><p>随机访问迭代器能够以任意顺序访问数据，并能用于读写数据（不是<code>const</code>的C++指针也是随机访问迭代器）。STL的排序和搜索函数使用随机访问迭代器。随机访问迭代器可以使用关系操作符作比较。</p>
+<p><code>random_shuffle()</code>函数随机打乱原先的顺序。申明为：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> RandomAccessIterator&gt;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">random_shuffle</span> <span class="params">(RandomAccessIterator first,</span></span></div><div class="line">                     RandomAccessIterator last);</div></pre></td></tr></table></figure></p>
+<p>使用方法：<br><code>random_shuffle(vdouble.begin(), vdouble.end());</code></p>
+<h3 id="迭代器技术"><a href="#迭代器技术" class="headerlink" title="迭代器技术"></a>迭代器技术</h3><p>要学会使用迭代器和容器以及算法，需要学习下面的新技术。</p>
+<h4 id="流和迭代器"><a href="#流和迭代器" class="headerlink" title="流和迭代器"></a>流和迭代器</h4><p>本书的很多例子程序使用I/O流语句来读写数据。例如：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> value;</div><div class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"Enter value: "</span>;</div><div class="line"><span class="built_in">cin</span> &gt;&gt; value;</div><div class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"You entered "</span> &lt;&lt; value &lt;&lt; <span class="built_in">endl</span>;</div></pre></td></tr></table></figure></p>
+<p>对于迭代器，有另一种方法使用流和标准函数。理解的要点是将输入/输出流作为容器看待。因此，任何接受迭代器参数的算法都可以和流一起工作。</p>
+<blockquote>
+<ol>
+<li>outstrm.cpp</li>
+</ol>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span>    <span class="comment">// Need random(), srandom()</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span>      <span class="comment">// Need time()</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span>   <span class="comment">// Need sort(), copy()</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span>      <span class="comment">// Need vector</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Display</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; v, <span class="keyword">const</span> <span class="keyword">char</span>* s)</span></span>;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">4<span class="comment">// Seed the random number generator</span></div><div class="line">4srandom( time(<span class="literal">NULL</span>) );</div><div class="line"> </div><div class="line">4<span class="comment">// Construct vector and fill with random integer values</span></div><div class="line">4<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; collection(<span class="number">10</span>);</div><div class="line">4<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</div><div class="line">    	collection[i] = random() % <span class="number">10000</span>;;</div><div class="line"> </div><div class="line">4<span class="comment">// Display, sort, and redisplay</span></div><div class="line">4Display(collection.begin(), collection.end(), <span class="string">"Before sorting"</span>);</div><div class="line">4sort(collection.begin(), collection.end());</div><div class="line">4Display(collection, <span class="string">"After sorting"</span>);</div><div class="line">4<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">// Display label s and contents of integer vector v</span></div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="number">_F</span>wdIt&gt;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Display</span><span class="params">(<span class="number">_F</span>wdIt first, <span class="number">_F</span>wdIt last, <span class="keyword">const</span> <span class="keyword">char</span>* szLabel)</span></span></div><div class="line">&#123;</div><div class="line">4<span class="built_in">cout</span> &lt;&lt; szLabel &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">4<span class="built_in">std</span>::copy(first, last, ostream_iterator&lt;<span class="number">_F</span>wdIt::value_type, <span class="keyword">char</span>&gt;(<span class="built_in">std</span>::<span class="built_in">cout</span>));</div><div class="line">4<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>函数<code>Display()</code>显示了如何使用一个输出流迭代器。下面的语句将容器中的值传输到cout输出流对象中:<br><code>copy(v.begin(), v.end(), ostream_iterator&lt;int&gt;(cout, &quot;\t&quot;));</code><br>第三个参数实例化了<code>ostream_iterator&lt;int&gt;</code>类型，并将它作为<code>copy()</code>函数的输出目标迭代器对象。“\t”字符串是作为分隔符。运行结果：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ g++ outstrm.cpp</div><div class="line">$ ./a.out</div><div class="line">Before sorting</div><div class="line">677   722   686   238   964   397   251   118   11    312</div><div class="line">After sorting</div><div class="line">11    118   238   251   312   397   677   686   722   964</div></pre></td></tr></table></figure></p>
+<p>这是STL神奇的一面『确实神奇』。为定义输出流迭代器，STL提供了模板类<code>ostream_iterator</code>。这个类的构造函数有两个参数：一个<code>ostream</code>对象和一个<code>string</code>值。因此可以象下面一样简单地创建一个迭代器对象：<br><code>ostream_iterator&lt;int&gt;(cout, &quot;\n&quot;)</code><br>该迭代起可以和任何接受一个输出迭代器的函数一起使用。</p>
+<h4 id="插入迭代器"><a href="#插入迭代器" class="headerlink" title="插入迭代器"></a>插入迭代器</h4><p>插入迭代器用于将值插入到容器中。它们也叫做适配器，因为它们将容器适配或转化为一个迭代器，并用于<code>copy()</code>这样的算法中。例如，一个程序定义了一个链表和一个矢量容器:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">list</span>&lt;<span class="keyword">double</span>&gt; dList;</div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; dVector;</div></pre></td></tr></table></figure></p>
+<p>通过使用<code>front_inserter</code>迭代器对象，可以只用单个<code>copy()</code>语句就完成将矢量中的对象插入到链表前端的操作：<br><code>copy(dVector.begin(), dVector.end(), front_inserter(dList));</code></p>
+<p>三种插入迭代器如下：</p>
+<ul>
+<li>普通插入器 将对象插入到容器任何对象的前面。</li>
+<li>Front inserters 将对象插入到数据集的前面——例如，链表表头。</li>
+<li>Back inserters 将对象插入到集合的尾部——例如，矢量的尾部，导致矢量容器扩展。</li>
+</ul>
+<p>使用插入迭代器可能导致容器中的其他对象移动位置，因而使得现存的迭代器非法。例如，将一个对象插入到矢量容器将导致其他值移动位置以腾出空间。一般来说，插入到象链表这样的结构中更为有效，因为它们不会导致其他对象移动。</p>
+<blockquote>
+<ol>
+<li>insert.cpp</li>
+</ol>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"> </div><div class="line"><span class="keyword">int</span> iArray[<span class="number">5</span>] = &#123; <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span> &#125;;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Display</span><span class="params">(<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&amp; v, <span class="keyword">const</span> <span class="keyword">char</span>* s)</span></span>;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">4<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; iList;</div><div class="line">4</div><div class="line">4<span class="comment">// Copy iArray backwards into iList</span></div><div class="line">4copy(iArray, iArray + <span class="number">5</span>, front_inserter(iList));</div><div class="line">4Display(iList, <span class="string">"Before find and copy"</span>);</div><div class="line"> </div><div class="line">4<span class="comment">// Locate value 3 in iList</span></div><div class="line">4<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator p = find(iList.begin(), iList.end(), <span class="number">3</span>);</div><div class="line"> </div><div class="line">4<span class="comment">// Copy first two iArray values to iList ahead of p</span></div><div class="line">4copy(iArray, iArray + <span class="number">2</span>, inserter(iList, p));</div><div class="line">4Display(iList, <span class="string">"After find and copy"</span>);</div><div class="line"> </div><div class="line">4<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Display</span><span class="params">(<span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;&amp; a, <span class="keyword">const</span> <span class="keyword">char</span>* s)</span></span></div><div class="line">&#123;</div><div class="line">4<span class="built_in">cout</span> &lt;&lt; s &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">4copy(a.begin(), a.end(), ostream_iterator&lt;<span class="keyword">int</span>&gt;(<span class="built_in">cout</span>, <span class="string">" "</span>));</div><div class="line">4<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ g++ insert.cpp</div><div class="line">$ ./a.out</div><div class="line">Before find and copy</div><div class="line">5 4 3 2 1</div><div class="line">After find and copy</div><div class="line">5 4 1 2 3 2 1</div></pre></td></tr></table></figure></p>
+<p>可以将<code>front_inserter</code>替换为<code>back_inserter</code>试试。<br>如果用<code>find()</code>去查找在列表中不存在的值，例如99。由于这时将p设置为<code>past-the-end</code>值。最后的<code>copy()</code>函数将<code>iArray</code>的值附加到链表的后部。</p>
+<h4 id="混合迭代器函数"><a href="#混合迭代器函数" class="headerlink" title="混合迭代器函数"></a>混合迭代器函数</h4><p>在涉及到容器和算法的操作中，还有两个迭代器函数非常有用：</p>
+<ul>
+<li>advance() 按指定的数目增减迭代器。</li>
+<li>distance() 返回到达一个迭代器所需（递增）操作的数目。</li>
+</ul>
+<p>例如：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; iList;</div><div class="line"><span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt;::iterator p = find(iList.begin(), iList.end(), <span class="number">2</span>);</div><div class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"before: p == "</span> &lt;&lt; *p &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">advance(p, <span class="number">2</span>);  <span class="comment">// same as p = p + 2;</span></div><div class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"after : p == "</span> &lt;&lt; *p &lt;&lt; <span class="built_in">endl</span>;</div><div class="line"></div><div class="line"><span class="keyword">int</span> k = <span class="number">0</span>;</div><div class="line">distance(p, iList.end(), k);</div><div class="line"><span class="built_in">cout</span> &lt;&lt; <span class="string">"k == "</span> &lt;&lt; k &lt;&lt; <span class="built_in">endl</span>;</div></pre></td></tr></table></figure></p>
+<p><code>advance()</code>函数接受两个参数。第二个参数是向前推进的数目。对于前推迭代器，该值必须为正，而对于双向迭代器和随机访问迭代器，该值可以为负。<br>使用<code>distance()</code>函数来返回到达另一个迭代器所需要的步骤。</p>
+<p><em>注意</em><br><code>distance()</code>函数是迭代的，也就是说，它递增第三个参数。因此，你必须初始化该参数。未初始化该参数几乎注定要失败。</p>
+<h3 id="函数和函数对象"><a href="#函数和函数对象" class="headerlink" title="函数和函数对象"></a>函数和函数对象</h3><p>STL中，函数被称为算法，也就是说它们和标准C库函数相比，它们更为通用。STL算法通过重载<code>operator()</code>函数实现为模板类或模板函数。这些类用于创建函数对象，对容器中的数据进行各种各样的操作。下面的几节解释如何使用函数和函数对象。</p>
+<h4 id="函数和断言"><a href="#函数和断言" class="headerlink" title="函数和断言"></a>函数和断言</h4><p>经常需要对容器中的数据进行用户自定义的操作。例如，你可能希望遍历一个容器中所有对象的STL算法能够回调自己的函数。例如</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span>     <span class="comment">// Need random(), srandom()</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span>       <span class="comment">// Need time()</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span>       <span class="comment">// Need vector</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span>    <span class="comment">// Need for_each()</span></span></div><div class="line"> </div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> VSIZE 24        <span class="comment">// Size of vector</span></span></div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">long</span>&gt; v(VSIZE);  <span class="comment">// Vector object</span></div><div class="line"> </div><div class="line"><span class="comment">// Function prototypes</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">initialize</span><span class="params">(<span class="keyword">long</span> &amp;ri)</span></span>;</div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">(<span class="keyword">const</span> <span class="keyword">long</span> &amp;ri)</span></span>;</div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isMinus</span><span class="params">(<span class="keyword">const</span> <span class="keyword">long</span> &amp;ri)</span></span>;  <span class="comment">// Predicate function</span></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">4srandom( time(<span class="literal">NULL</span>) );  <span class="comment">// Seed random generator</span></div><div class="line">4</div><div class="line">4for_each(v.begin(), v.end(), initialize);<span class="comment">//调用普通函数</span></div><div class="line">4<span class="built_in">cout</span> &lt;&lt; <span class="string">"Vector of signed long integers"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">4for_each(v.begin(), v.end(), show);</div><div class="line">4<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line"> </div><div class="line">4<span class="comment">// Use predicate function to count negative values</span></div><div class="line">4<span class="keyword">int</span> count = <span class="number">0</span>;</div><div class="line">4<span class="built_in">vector</span>&lt;<span class="keyword">long</span>&gt;::iterator p;</div><div class="line">4p = find_if(v.begin(), v.end(), isMinus); <span class="comment">//调用断言函数</span></div><div class="line"></div><div class="line">4<span class="keyword">while</span> (p != v.end()) </div><div class="line">4&#123;</div><div class="line">44count++;</div><div class="line">44p = find_if(p + <span class="number">1</span>, v.end(), isMinus);</div><div class="line">4&#125;</div><div class="line"></div><div class="line">4<span class="built_in">cout</span> &lt;&lt; <span class="string">"Number of values: "</span> &lt;&lt; VSIZE &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">4<span class="built_in">cout</span> &lt;&lt; <span class="string">"Negative values : "</span> &lt;&lt; count &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">4</div><div class="line">4<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">// Set ri to a signed integer value</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">initialize</span><span class="params">(<span class="keyword">long</span> &amp;ri)</span></span></div><div class="line">&#123;</div><div class="line">4ri = ( random() - (RAND_MAX / <span class="number">2</span>) );</div><div class="line">4<span class="comment">//  ri = random();</span></div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">// Display value of ri</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">show</span><span class="params">(<span class="keyword">const</span> <span class="keyword">long</span> &amp;ri)</span></span></div><div class="line">&#123;</div><div class="line">4<span class="built_in">cout</span> &lt;&lt; ri &lt;&lt; <span class="string">"  "</span>;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">// Returns true if ri is less than 0</span></div><div class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isMinus</span><span class="params">(<span class="keyword">const</span> <span class="keyword">long</span> &amp;ri)</span></span></div><div class="line">&#123;</div><div class="line">4<span class="keyword">return</span> (ri &lt; <span class="number">0</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>所谓断言函数，就是返回<code>bool</code>值的函数。</p>
+<h4 id="函数对象"><a href="#函数对象" class="headerlink" title="函数对象"></a>函数对象</h4><p>除了给STL算法传递一个回调函数，你还可能需要传递一个类对象以便执行更复杂的操作。这样的一个对象就叫做函数对象。实际上函数对象就是一个类，但它和回调函数一样可以被回调。例如，在函数对象每次被<code>for_each()</code>或<code>find_if()</code>函数调用时可以保留统计信息。函数对象是通过重载<code>operator()()</code>实现的。如果<code>TanyClass</code>定义了<code>opeator()()</code>,那么就可以这么使用：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">TAnyClass object;  <span class="comment">// Construct object</span></div><div class="line">object();          <span class="comment">// Calls TAnyClass::operator()() function</span></div><div class="line">for_each(v.begin(), v.end(), object);</div></pre></td></tr></table></figure></p>
+<p>STL定义了几个函数对象。由于它们是模板，所以能够用于任何类型，包括C/C++固有的数据类型，如<code>long</code>。有些函数对象从名字中就可以看出它的用途，如<code>plus()</code>和<code>multiplies()</code>。类似的<code>greater()</code>和<code>less-equal()</code>用于比较两个值。</p>
+<p><em>注意</em></p>
+<p>有些版本的ANSI C++定义了<code>times()</code>函数对象，而GNU C++把它命名为<code>multiplies()</code>。使用时必须包含头文件<code>&lt;functional&gt;</code>。<br>一个有用的函数对象的应用是<code>accumulate()</code>算法。该函数计算容器中所有值的总和。记住这样的值不一定是简单的类型，通过重载<code>operator+()</code>，也可以是类对象。</p>
+<blockquote>
+<ol>
+<li>accum.cpp  </li>
+</ol>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;numeric&gt;</span>      <span class="comment">// Need accumulate()</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span>       <span class="comment">// Need vector</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span>   <span class="comment">// Need multiplies() (or times())</span></span></div><div class="line"> </div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> MAX 10</span></div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">long</span>&gt; v(MAX);    <span class="comment">// Vector object</span></div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">4<span class="comment">// Fill vector using conventional loop</span></div><div class="line">4<span class="comment">//</span></div><div class="line">4<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; MAX; i++)</div><div class="line">44v[i] = i + <span class="number">1</span>;</div><div class="line"> </div><div class="line">4<span class="comment">// Accumulate the sum of contained values</span></div><div class="line">4<span class="comment">//</span></div><div class="line">4<span class="keyword">long</span> sum = accumulate(v.begin(), v.end(), <span class="number">0</span>);</div><div class="line">4<span class="built_in">cout</span> &lt;&lt; <span class="string">"Sum of values == "</span> &lt;&lt; sum &lt;&lt; <span class="built_in">endl</span>;</div><div class="line"> </div><div class="line">4<span class="comment">// Accumulate the product of contained values</span></div><div class="line">4<span class="comment">//</span></div><div class="line">4<span class="keyword">long</span> product = accumulate(v.begin(), v.end(), <span class="number">1</span>, multiplies&lt;<span class="keyword">long</span>&gt;()); <span class="comment">//注意这行</span></div><div class="line">4<span class="built_in">cout</span> &lt;&lt; <span class="string">"Product of values == "</span> &lt;&lt; product &lt;&lt; <span class="built_in">endl</span>;</div><div class="line"> </div><div class="line">4<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>编译输出如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ g++ accum.cpp</div><div class="line">$ ./a.out</div><div class="line">Sum of values == <span class="number">55</span></div><div class="line">Product of values == <span class="number">3628800</span></div></pre></td></tr></table></figure></p>
+<p>『注意使用了函数对象的accumulate()的用法。<code>accumulate()</code>在内部将每个容器中的对象和第三个参数作为<code>multiplies</code>函数对象的参数, <code>multiplies(1,v)</code>计算乘积。VC中的这些模板的源代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// TEMPLATE FUNCTION accumulate</span></div><div class="line"></div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="number">_</span>II, <span class="keyword">class</span> <span class="number">_</span>Ty&gt; <span class="keyword">inline</span></div><div class="line">    <span class="number">_</span><span class="function">Ty <span class="title">accumulate</span><span class="params">(<span class="number">_</span>II <span class="number">_F</span>, <span class="number">_</span>II <span class="number">_L</span>, <span class="number">_</span>Ty <span class="number">_</span>V)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">for</span> (; <span class="number">_F</span> != <span class="number">_L</span>; ++<span class="number">_F</span>)</div><div class="line">        <span class="number">_</span>V = <span class="number">_</span>V + *<span class="number">_F</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> (<span class="number">_</span>V); </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// TEMPLATE FUNCTION accumulate WITH BINOP</span></div><div class="line"></div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="number">_</span>II, <span class="keyword">class</span> <span class="number">_</span>Ty, <span class="keyword">class</span> <span class="number">_B</span>op&gt; <span class="keyword">inline</span></div><div class="line">    <span class="number">_</span><span class="function">Ty <span class="title">accumulate</span><span class="params">(<span class="number">_</span>II <span class="number">_F</span>, <span class="number">_</span>II <span class="number">_L</span>, <span class="number">_</span>Ty <span class="number">_</span>V, <span class="number">_B</span>op <span class="number">_B</span>)</span></span></div><div class="line">&#123;</div><div class="line">4<span class="keyword">for</span> (; <span class="number">_F</span> != <span class="number">_L</span>; ++<span class="number">_F</span>)</div><div class="line">44<span class="number">_</span>V = <span class="number">_B</span>(<span class="number">_</span>V, *<span class="number">_F</span>);</div><div class="line"></div><div class="line">    <span class="keyword">return</span> (<span class="number">_</span>V); </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// TEMPLATE STRUCT binary_function</span></div><div class="line"></div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="number">_</span>A1, <span class="keyword">class</span> <span class="number">_</span>A2, <span class="keyword">class</span> <span class="number">_</span>R&gt;</div><div class="line">    <span class="keyword">struct</span> binary_function &#123;</div><div class="line">    <span class="keyword">typedef</span> <span class="number">_</span>A1 first_argument_type;</div><div class="line">    <span class="keyword">typedef</span> <span class="number">_</span>A2 second_argument_type;</div><div class="line">    <span class="keyword">typedef</span> <span class="number">_</span>R result_type;</div><div class="line">&#125;;</div><div class="line"></div><div class="line"><span class="comment">// TEMPLATE STRUCT multiplies</span></div><div class="line"></div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> <span class="number">_</span>Ty&gt;</div><div class="line">    <span class="keyword">struct</span> multiplies : binary_function&lt;<span class="number">_</span>Ty, <span class="number">_</span>Ty, <span class="number">_</span>Ty&gt;&#123;</div><div class="line">    <span class="number">_</span><span class="function">Ty <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">const</span> <span class="number">_</span>Ty&amp; <span class="number">_</span>X, <span class="keyword">const</span> <span class="number">_</span>Ty&amp; <span class="number">_</span>Y)</span> <span class="keyword">const</span></span></div><div class="line">        &#123;<span class="keyword">return</span> (<span class="number">_</span>X * <span class="number">_</span>Y); &#125;</div><div class="line">    &#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>如果你想深入了解STL到底是怎么实现的，最好的办法是写个简单的程序，将程序中涉及到的模板源码给copy下来，稍作整理，就能看懂了。所以没有必要去买什么《STL源码剖析》之类的书籍，那些书可能反而浪费时间。』</p>
+</blockquote>
+<h4 id="发生器函数对象"><a href="#发生器函数对象" class="headerlink" title="发生器函数对象"></a>发生器函数对象</h4><p>有一类有用的函数对象是“发生器”(generator)。这类函数有自己的内存，也就是说它能够从先前的调用中记住一个值。例如随机数发生器函数。</p>
+<p>普通的C程序员使用静态或全局变量 “记忆”上次调用的结果。但这样做的缺点是该函数无法和它的数据相分离『还有个缺点是要用TLS才能线程安全』。显然，使用类来封装一块：“内存”更安全可靠。先看一下例子：</p>
+<blockquote>
+<ol>
+<li>randfunc.cpp</li>
+</ol>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span>    <span class="comment">// Need random(), srandom()</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;time.h&gt;</span>      <span class="comment">// Need time()</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span>   <span class="comment">// Need random_shuffle()</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span>      <span class="comment">// Need vector</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span>  <span class="comment">// Need ptr_fun()</span></span></div><div class="line"> </div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"> </div><div class="line"><span class="comment">// Data to randomize</span></div><div class="line"><span class="keyword">int</span> iarray[<span class="number">10</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>&#125;;</div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v(iarray, iarray + <span class="number">10</span>);</div><div class="line"> </div><div class="line"><span class="comment">// Function prototypes</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Display</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; vr, <span class="keyword">const</span> <span class="keyword">char</span> *s)</span></span>;</div><div class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">RandInt</span><span class="params">(<span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> n)</span></span>;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">4srandom( time(<span class="literal">NULL</span>) );  <span class="comment">// Seed random generator</span></div><div class="line">4Display(v, <span class="string">"Before shuffle:"</span>);</div><div class="line"> </div><div class="line">4pointer_to_unary_function&lt;<span class="keyword">unsigned</span> <span class="keyword">int</span>, <span class="keyword">unsigned</span> <span class="keyword">int</span>&gt;</div><div class="line">44ptr_RandInt = ptr_fun(RandInt);  <span class="comment">// Pointer to RandInt()//注意这行</span></div><div class="line">4</div><div class="line">4random_shuffle(v.begin(), v.end(), ptr_RandInt);</div><div class="line">4Display(v, <span class="string">"After shuffle:"</span>);</div><div class="line"></div><div class="line">4<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Display contents of vector vr</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Display</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; vr, <span class="keyword">const</span> <span class="keyword">char</span> *s)</span></span></div><div class="line">&#123;</div><div class="line">4<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; s &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">4copy(vr.begin(), vr.end(), ostream_iterator&lt;<span class="keyword">int</span>&gt;(<span class="built_in">cout</span>, <span class="string">" "</span>));</div><div class="line">4<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Return next random value in sequence modulo n</span></div><div class="line"><span class="function"><span class="keyword">unsigned</span> <span class="keyword">int</span> <span class="title">RandInt</span><span class="params">(<span class="keyword">const</span> <span class="keyword">unsigned</span> <span class="keyword">int</span> n)</span></span></div><div class="line">&#123;</div><div class="line">4<span class="keyword">return</span> random() % n;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>编译运行结果如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ g++ randfunc.cpp</div><div class="line">$ ./a.out</div><div class="line">Before shuffle:</div><div class="line">1 2 3 4 5 6 7 8 9 10</div><div class="line">After shuffle:</div><div class="line">6 7 2 8 3 5 10 1 9 4</div></pre></td></tr></table></figure></p>
+<p>首先用下面的语句申明一个对象：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">pointer_to_unary_function&lt;<span class="keyword">unsigned</span> <span class="keyword">int</span>, <span class="keyword">unsigned</span> <span class="keyword">int</span>&gt;</div><div class="line">4ptr_RandInt = ptr_fun(RandInt);</div></pre></td></tr></table></figure></p>
+<p>这儿使用STL的单目函数模板定义了一个变量<code>ptr_RandInt</code>，并将地址初始化到我们的函数<code>RandInt()</code>。单目函数接受一个参数，并返回一个值。现在<code>random_shuffle()</code>可以如下调用：<br><code>random_shuffle(v.begin(), v.end(), ptr_RandInt);</code></p>
+<p>在本例子中，发生器只是简单的调用<code>rand()</code>函数。</p>
+<h4 id="发生器函数类对象"><a href="#发生器函数类对象" class="headerlink" title="发生器函数类对象"></a>发生器函数类对象</h4><p>下面的例子说明发生器函数类对象的使用。</p>
+<blockquote>
+<ol>
+<li>fiborand.cpp</li>
+</ol>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span>   <span class="comment">// Need random_shuffle()</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span>      <span class="comment">// Need vector</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span>  <span class="comment">// Need unary_function</span></span></div><div class="line"> </div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"> </div><div class="line"><span class="comment">// Data to randomize</span></div><div class="line"><span class="keyword">int</span> iarray[<span class="number">10</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>&#125;;</div><div class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v(iarray, iarray + <span class="number">10</span>);</div><div class="line"> </div><div class="line"><span class="comment">// Function prototype</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Display</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; vr, <span class="keyword">const</span> <span class="keyword">char</span> *s)</span></span>;</div><div class="line"> </div><div class="line"><span class="comment">// The FiboRand template function-object class</span></div><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> Arg&gt;</div><div class="line"><span class="keyword">class</span> FiboRand : <span class="keyword">public</span> unary_function&lt;Arg, Arg&gt; &#123;</div><div class="line">4<span class="keyword">int</span> i, j;</div><div class="line">4Arg sequence[<span class="number">18</span>];</div><div class="line"><span class="keyword">public</span>:</div><div class="line">4FiboRand();</div><div class="line">4<span class="function">Arg <span class="title">operator</span><span class="params">()</span><span class="params">(<span class="keyword">const</span> Arg&amp; arg)</span></span>;</div><div class="line">&#125;;</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">4FiboRand&lt;<span class="keyword">int</span>&gt; fibogen;  <span class="comment">// Construct generator object</span></div><div class="line">4<span class="built_in">cout</span> &lt;&lt; <span class="string">"Fibonacci random number generator"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">4<span class="built_in">cout</span> &lt;&lt; <span class="string">"using random_shuffle and a function object"</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line"></div><div class="line">4Display(v, <span class="string">"Before shuffle:"</span>);</div><div class="line">4random_shuffle(v.begin(), v.end(), fibogen);</div><div class="line">4Display(v, <span class="string">"After shuffle:"</span>);</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">// Display contents of vector vr</span></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">Display</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; vr, <span class="keyword">const</span> <span class="keyword">char</span> *s)</span></span></div><div class="line">&#123;</div><div class="line">4<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; s &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">4copy(vr.begin(), vr.end(), ostream_iterator&lt;<span class="keyword">int</span>&gt;(<span class="built_in">cout</span>, <span class="string">" "</span>));</div><div class="line">4<span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">// FiboRand class constructor</span></div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> Arg&gt;</div><div class="line">FiboRand&lt;Arg&gt;::FiboRand()</div><div class="line">&#123;</div><div class="line">4sequence[<span class="number">17</span>] = <span class="number">1</span>;</div><div class="line">4sequence[<span class="number">16</span>] = <span class="number">2</span>;</div><div class="line">4<span class="keyword">for</span> (<span class="keyword">int</span> n = <span class="number">15</span>; n &gt; <span class="number">0</span>; n—)</div><div class="line">44sequence[n] = sequence[n + <span class="number">1</span>] + sequence[n + <span class="number">2</span>];</div><div class="line">4i = <span class="number">17</span>;</div><div class="line">4j = <span class="number">5</span>;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="comment">// FiboRand class function operator</span></div><div class="line"><span class="keyword">template</span>&lt;<span class="keyword">class</span> Arg&gt;</div><div class="line">Arg FiboRand&lt;Arg&gt;::<span class="keyword">operator</span>()(<span class="keyword">const</span> Arg&amp; arg)</div><div class="line">&#123;</div><div class="line">4Arg k = sequence[i] + sequence[j];</div><div class="line">4sequence[i] = k;</div><div class="line">4i--;</div><div class="line">4j--;</div><div class="line">4<span class="keyword">if</span> (i == <span class="number">0</span>) i = <span class="number">17</span>;</div><div class="line">4<span class="keyword">if</span> (j == <span class="number">0</span>) j = <span class="number">17</span>;</div><div class="line">4<span class="keyword">return</span> k % arg;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>编译运行输出如下:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ g++ fiborand.cpp</div><div class="line">$ ./a.out</div><div class="line">Fibonacci random number generator</div><div class="line">using random_shuffle and a function object</div><div class="line">Before shuffle:</div><div class="line">1 2 3 4 5 6 7 8 9 10</div><div class="line">After shuffle:</div><div class="line">6 8 5 4 3 7 10 1 9</div></pre></td></tr></table></figure></p>
+<p>该程序用完全不通的方法使用使用<code>rand_shuffle</code>。<code>Fibonacci</code>发生器封装在一个类中，该类能从先前的“使用”中记忆运行结果。在本例中，类<code>FiboRand</code>维护了一个数组和两个索引变量I和j。</p>
+<p><code>FiboRand</code>类继承自<code>unary_function()</code>模板:<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">template</span> &lt;<span class="keyword">class</span> Arg&gt;</div><div class="line"><span class="keyword">class</span> FiboRand : <span class="keyword">public</span> unary_function&lt;Arg, Arg&gt; &#123;...&#125;</div></pre></td></tr></table></figure></p>
+<p><code>Arg</code>是用户自定义数据类型。该类还定以了两个成员函数，一个是构造函数，另一个是<code>operator()()</code>函数，该操作符允许<code>random_shuffle()</code>算法象一个函数一样“调用”一个<code>FiboRand</code>对象。</p>
+<p>绑定器函数对象</p>
+<p>一个绑定器使用另一个函数对象<code>f()</code>和参数值V创建一个函数对象。被绑定函数对象必须为双目函数，也就是说有两个参数: A和B。STL中的帮定器有：</p>
+<ul>
+<li>bind1st() 创建一个函数对象，该函数对象将值V作为第一个参数A。</li>
+<li>bind2nd()创建一个函数对象，该函数对象将值V作为第二个参数B。</li>
+</ul>
+<p>举例如下：</p>
+<blockquote>
+<ol>
+<li>binder.cpp</li>
+</ol>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;functional&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;list&gt;</span></span></div><div class="line"> </div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"> </div><div class="line"><span class="comment">// Data</span></div><div class="line"><span class="keyword">int</span> iarray[<span class="number">10</span>] = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>&#125;;</div><div class="line"><span class="built_in">list</span>&lt;<span class="keyword">int</span>&gt; aList(iarray, iarray + <span class="number">10</span>);</div><div class="line"> </div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">4<span class="keyword">int</span> k = <span class="number">0</span>;</div><div class="line">4count_if(aList.begin(), aList.end(),</div><div class="line">44bind1st(greater&lt;<span class="keyword">int</span>&gt;(), <span class="number">8</span>), k);</div><div class="line">4<span class="built_in">cout</span> &lt;&lt; <span class="string">"Number elements &lt; 8 == "</span> &lt;&lt; k &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">4<span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>Algorithm <code>count_if()</code>计算满足特定条件的元素的数目。 这是通过将一个函数对象和一个参数捆绑到为一个对象，并将该对象作为算法的第三个参数实现的。 注意这个表达式:<br><code>bind1st(greater&lt;int&gt;(), 8)</code><br>该表达式将<code>greater&lt;int&gt;()</code>和一个参数值8捆绑为一个函数对象。由于使用了<code>bind1st()</code>，所以该函数相当于计算下述表达式：<br><code>8 &gt; q</code></p>
+<p>表达式中的q是容器中的对象。因此，完整的表达式<br><code>count_if(aList.begin(), aList.end(), bind1st(greater&lt;int&gt;(), 8), k);</code><br>计算所有小于或等于8的对象的数目。</p>
+<h4 id="否定函数对象"><a href="#否定函数对象" class="headerlink" title="否定函数对象"></a>否定函数对象</h4><p>所谓否定(<code>negator</code>)函数对象，就是它从另一个函数对象创建而来，如果原先的函数返回真，则否定函数对象返回假。有两个否定函数对象：<code>not1()</code>和<code>not2()</code>。<code>not1()</code>接受单目函数对象，<code>not2()</code>接受双目函数对象。否定函数对象通常和帮定器一起使用。例如，上节中用<code>bind1nd</code>来搜索<code>q&lt;=8</code>的值：<br><code>count_if(aList.begin(), aList.end(),bind1st(greater&lt;int&gt;(), 8), k);</code></p>
+<p>如果要搜索<code>q&gt;8</code>的对象，则用<code>bind2st</code>。而现在可以这样写：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">start = find_if(aList.begin(), aList.end(),</div><div class="line">4not1(bind1nd(greater&lt;<span class="keyword">int</span>&gt;(), <span class="number">6</span>)));</div></pre></td></tr></table></figure></p>
+<p>你必须使用<code>not1</code>，因为<code>bind1nd</code>返回单目函数。</p>
+<h3 id="总结：使用标准模板库-STL"><a href="#总结：使用标准模板库-STL" class="headerlink" title="总结：使用标准模板库 (STL)"></a>总结：使用标准模板库 (STL)</h3><p>尽管很多程序员仍然在使用标准C函数，但是这就好像骑着毛驴寻找<code>Mercedes</code>一样。你当然最终也会到达目标，但是你浪费了很多时间。</p>
+<p>尽管有时候使用标准C函数确实方便(如使用<code>sprintf()</code>进行格式化输出)。但是C函数不使用异常机制来报告错误，也不适合处理新的数据类型。而且标准C函数经常使用内存分配技术，没有经验的程序员很容易写出bug来。.</p>
+<p>C++标准库则提供了更为安全，更为灵活的数据集处理方式。STL最初由HP实验室的Alexander Stepanov和Meng Lee开发。最近，C++标准委员会采纳了STL，尽管在不同的实现之间仍有细节差别。</p>
+<p>STL的最主要的两个特点：数据结构和算法的分离，非面向对象本质。访问对象是通过象指针一样的迭代器实现的；容器是象链表，矢量之类的数据结构，并按模板方式提供；算法是函数模板，用于操作容器中的数据。由于STL以模板为基础，所以能用于任何数据类型和结构。</p>
+<p>#####~转载声明~：<br>原文：<a href="http://net.pku.edu.cn/~yhf/UsingSTL.htm" target="_blank" rel="external">三十分钟掌握STL</a><br>译者：kary<br>联系：karymay@163.net</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag">#C++</a>
+          
+            <a href="/tags/STL/" rel="tag">#STL</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/14/python-builder/" rel="next" title="Python设计模式-建造者模式">
+                <i class="fa fa-chevron-left"></i> Python设计模式-建造者模式
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/08/15/stl-leaning-30/"
+     data-title="STL-30分钟掌握"
+     data-content=""
+     data-url="http://www.alzan.cc/2016/08/15/stl-leaning-30/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/15/stl-leaning-30/"
+           data-title="STL-30分钟掌握" data-url="http://www.alzan.cc/2016/08/15/stl-leaning-30/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/ferryman.jpg"
+               alt="Azlan.Z" />
+          <p class="site-author-name" itemprop="name">Azlan.Z</p>
+          <p class="site-description motion-element" itemprop="description">说到底，人生只是一个人的挣扎，一个人的战斗</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="http://www.linkedin.com/in/huan-zhang-69b887b6" target="_blank" title="Linkedin">
+                  
+                    <i class="fa fa-fw fa-linkedin"></i>
+                  
+                  Linkedin
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/adyzng" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/338667666" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  Weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="mailto:adyzng@gmail.com" target="_blank" title="Gmail">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  Gmail
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://http://sucai.zcool.com.cn/" title="站酷" target="_blank">站酷</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://hexo.io" title="Hexo" target="_blank">Hexo</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://theme-next.iissnan.com" title="NexT" target="_blank">NexT</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#STL概述"><span class="nav-text">STL概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#要点"><span class="nav-text">要点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#头文件"><span class="nav-text">头文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#名字空间"><span class="nav-text">名字空间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器"><span class="nav-text">迭代器</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#迭代器的类型"><span class="nav-text">迭代器的类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#指针迭代器"><span class="nav-text">指针迭代器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#容器迭代器"><span class="nav-text">容器迭代器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常量迭代器"><span class="nav-text">常量迭代器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用迭代器编程"><span class="nav-text">使用迭代器编程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入迭代器"><span class="nav-text">输入迭代器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出迭代器"><span class="nav-text">输出迭代器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#前推迭代器"><span class="nav-text">前推迭代器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#双向迭代器"><span class="nav-text">双向迭代器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#随机访问迭代器"><span class="nav-text">随机访问迭代器</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器技术"><span class="nav-text">迭代器技术</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#流和迭代器"><span class="nav-text">流和迭代器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#插入迭代器"><span class="nav-text">插入迭代器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#混合迭代器函数"><span class="nav-text">混合迭代器函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数和函数对象"><span class="nav-text">函数和函数对象</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#函数和断言"><span class="nav-text">函数和断言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#函数对象"><span class="nav-text">函数对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发生器函数对象"><span class="nav-text">发生器函数对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#发生器函数类对象"><span class="nav-text">发生器函数类对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#否定函数对象"><span class="nav-text">否定函数对象</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结：使用标准模板库-STL"><span class="nav-text">总结：使用标准模板库 (STL)</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Azlan.Z</span>
+</div>
+
+<div class="powered-by">
+  Powered by <a class="theme-link" href="https://hexo.io">Hexo</a>
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+        
+
+<div class="busuanzi-count">
+
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+
+  
+  
+</div>
+
+
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"alzan"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
